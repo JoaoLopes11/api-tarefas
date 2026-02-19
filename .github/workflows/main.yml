@@ -1,5 +1,6 @@
 name: Hello world
-on: workflow_dispatch:
+on: 
+  workflow_dispatch:
 
 jobs:
   hello-world-job:
