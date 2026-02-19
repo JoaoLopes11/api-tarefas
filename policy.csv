@@ -1,0 +1,19 @@
+g, Admin, Share
+g, Share, Base
+g, alice, Base
+g, admin, Admin
+
+p, Admin, /user, POST, allow
+p, Admin, /user/:id, GET, allow
+p, Admin, /user/:id, DELETE, allow
+
+p, Base, /todolist, GET, allow
+p, Base, /todolist, POST, allow
+p, Base, /todolist/:id, GET, allow
+p, Base, /todo/item, POST, allow
+p, Base, /todo/:listid/tasks, GET, allow
+p, Base, /todo/:listid/tasks/:taskid, GET, allow
+
+p, Share, /todolist/:listid/share, POST, allow
+
+g, useress1, Base
