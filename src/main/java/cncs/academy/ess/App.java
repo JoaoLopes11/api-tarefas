@@ -25,15 +25,16 @@ import java.security.NoSuchAlgorithmException;
 
 public class App {
         public static void main(String[] args) throws NoSuchAlgorithmException, DuplicateUserException {
-            SslPlugin sslPlugin = new SslPlugin(ssl -> {
+          /*  SslPlugin sslPlugin = new SslPlugin(ssl -> {
                 ssl.host = "0.0.0.0";
                 ssl.insecurePort = 7100;
                 ssl.securePort = 8443;
                 ssl.pemFromPath("cert.pem", "key.pem");
-            });
+            });*/
+
 
             Javalin app = Javalin.create(config -> {
-                config.registerPlugin(sslPlugin);
+              //  config.registerPlugin(sslPlugin);
                 config.bundledPlugins.enableCors(cors -> {
                     cors.addRule(it -> it.anyHost());
                 });
@@ -44,15 +45,15 @@ public class App {
         dbConfig.setUsername("postgres");
         dbConfig.setPassword("changeit");
 
-        //para testes insql
+      /*  //para testes insql
         UserRepository userRepository = new SQLUserRepository(dbConfig);
         TodoListsRepository listsRepository = new SQLTodoListsRepository(dbConfig);
-        TodoRepository todoRepository = new SQLTodoRepository(dbConfig);
+        TodoRepository todoRepository = new Sdocker tag todo-service o-teu-utilizador/todo-serviceQLTodoRepository(dbConfig);*/
 
-       /*  //para testes inmemory
+         //para testes inmemory
         UserRepository userRepository = new InMemoryUserRepository();
         TodoListsRepository listsRepository = new InMemoryTodoListsRepository();
-        TodoRepository todoRepository = new InMemoryTodoRepository();*/
+        TodoRepository todoRepository = new InMemoryTodoRepository();
 
         TodoUserService userService = new TodoUserService(userRepository);
         UserController userController = new UserController(userService);
