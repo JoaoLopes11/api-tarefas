@@ -27,21 +27,22 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+
       # Run unit tests
       - name: Build e testes (JUnit)
         run: mvn clean test
 
       # CodeQL - SAST
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@v3
         with:
           languages: java
           
       - name: Build for CodeQL Analysis
-        run: mvn clean compile
+        run: mvn clean compile -DskipTests
           
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@v3
 
       # Trivy
       - name: Complete scan with Trivy
@@ -54,7 +55,7 @@ jobs:
           output: 'trivy-results.sarif'
       
       - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: trivy-results.sarif
 
